@@ -9,4 +9,6 @@ import {Component} from "@angular/core";
 export class PostComponent {
   title = 'Dynamic tytle'
 
+  now:Date = new Date();
+
 }
