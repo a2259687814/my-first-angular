@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {interval, Subscription} from 'rxjs';
-import {filter, map} from 'rxjs/operators';
+import {Observable, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-rx-test',
@@ -12,13 +11,34 @@ export class RxTestComponent implements OnInit {
   sub: Subscription;
 
   constructor() {
-    const intervalStream$ = interval(1000);
-    this.sub = intervalStream$
-      .pipe(
-        filter(x => x < 10),
-        map(x => `Vasea x = ${x}`)
-      )
-      .subscribe(x => console.log(x));
+    const stream$ = new Observable(observer => {
+
+      setTimeout(() => {
+        observer.next(1);
+      }, 1500);
+
+
+      setTimeout(() => {
+        observer.complete();
+      }, 2100);
+
+      setTimeout(() => {
+        observer.error('Something went wrong');
+      }, 2000);
+
+
+      setTimeout(() => {
+        observer.next(2);
+      }, 2500);
+
+    });
+
+    this.sub = stream$
+      .subscribe(
+        value => console.log('Next: ', value),
+        error => console.log('Error: ', error),
+        () => console.log('Complete')
+      );
   }
 
   ngOnInit(): void {
