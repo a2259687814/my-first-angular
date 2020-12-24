@@ -13,6 +13,7 @@ export interface Post {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  a = 2;
   posts: Array<Post> = [
     {
       title: 'vasea1',
@@ -27,8 +28,13 @@ export class AppComponent {
   ];
 
   updatePosts(post: Post): void {
+    post.id = this.a++;
     this.posts.unshift(post);
     console.log(post);
+  }
 
+  removePost(id: number): void {
+    console.log('Id to remove', id);
+    this.posts = this.posts.filter(p => p.id !== id);
   }
 }
