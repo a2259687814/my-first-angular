@@ -6,22 +6,22 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Dynamic tytle2'
-  img = 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg'
+  title = 'Dynamic tytle2';
+  img = 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg';
 
-  inputValue = ''
-  vasea = 'VASEA'
-  petru='ion'
+  inputValue = '';
+  vasea = 'VASEA';
+  petru = 'ion';
 
 
   constructor() {
     setTimeout(() => {
-      this.img = 'http://frontendlabepam.github.io/FL5/angular/assets/img/angular-js-logo.png'
-    }, 3000)
+      this.img = 'http://frontendlabepam.github.io/FL5/angular/assets/img/angular-js-logo.png';
+    }, 3000);
   }
 
   onInput(e: Event) {
-    this.inputValue = (<HTMLInputElement>e.target).value;
+    this.inputValue = (e.target as HTMLInputElement).value;
   }
 
   onBlur(value: string) {
