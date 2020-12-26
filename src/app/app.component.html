@@ -9,4 +9,8 @@
     recusandae ut vel vitae.</p>
 </div>
 
+<ng-template [appIfNot]="isVisible">
+  <p>Lorem ipsum dolor sit amet.</p>
+</ng-template>
+
 <button (click)="isVisible=!isVisible"> click !!</button>
