@@ -2,3 +2,11 @@
    [dStyle]="{border: '1px solid red', borderRadius: '10px'}"
 
 >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, commodi!</p>
+
+
+<div *appIfNot="isVisible">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum eos exercitationem fugiat id iusto nobis pariatur
+    recusandae ut vel vitae.</p>
+</div>
+
+<button (click)="isVisible=!isVisible"> click !!</button>
