@@ -56,3 +56,6 @@ export class AppComponent implements OnInit{
   }
 }
 
+//https://www.youtube.com/watch?v=pt_cwna0r0s
+//https://www.youtube.com/watch?v=gB-OmN1egV8
+
