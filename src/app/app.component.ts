@@ -1,61 +1,62 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {delay} from 'rxjs/operators';
+import {Component} from '@angular/core';
+import {Todo, TodosService} from './services/todos.service';
 
-export interface Todo{
-  completed: boolean;
-  title: string;
-  id?: number;
-}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   todoTitle = '';
   todos: Array<Todo> = [];
   loading = false;
+  error = '';
 
-  constructor(private http: HttpClient) {
-  }
-  ngOnInit(): void {
-
+  constructor(private todosService: TodosService) {
   }
 
   addTodo(): void {
-    if (!this.todoTitle.trim()){
+    if (!this.todoTitle.trim()) {
       return;
     }
 
-    const newTodo: Todo = { completed: false, title: this.todoTitle};
+    const newTodo: Todo = {completed: false, title: this.todoTitle};
 
-    this.http.post<Todo>('https://jsonplaceholder.typicode.com/todos', newTodo)
+    this.todosService.addTodo(newTodo)
       .subscribe(todos => {
         this.todos.push(todos);
         this.todoTitle = '';
       });
   }
 
-  fetchTodos(): void{
+  fetchTodos(): void {
     this.loading = true;
-    this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos?_limit=2')
-      .pipe(delay(1500))
+    this.todosService.fetchTodos()
       .subscribe(response => {
-      console.log(response);
-      this.todos = response;
-      this.loading = false;
-    });
+        console.log(response);
+        this.todos = response;
+        this.loading = false;
+        this.error = '';
+      });
   }
+
   removeTodo(id: number): void {
-    this.http.delete<void>(`https://jsonplaceholder.typicode.com/todos/${id}`)
+    this.todosService.removeTodo(id)
       .subscribe(() => {
         this.todos = this.todos.filter(t => t.id !== id);
       });
   }
+
+  completeTodo(id: number): void {
+    this.todosService.completeTodo(id)
+      .subscribe(todo => {
+          // @ts-ignore
+          this.todos.find(t => t.id === todo.id).completed = true;
+        },
+        error => this.error = error.message
+      );
+  }
 }
 
-//https://www.youtube.com/watch?v=pt_cwna0r0s
-//https://www.youtube.com/watch?v=gB-OmN1egV8
 
