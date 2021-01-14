@@ -6,11 +6,16 @@ import { EditPageComponent } from './edit-page/edit-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import {RouterModule} from '@angular/router';
 import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {SharedModule} from '../shared/shared.module';
+import {AuthService} from './shared/services/auth.service';
 
 @NgModule({
   declarations: [CreatePageComponent, DashboardPageComponent, EditPageComponent, LoginPageComponent, AdminLayoutComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       {
         path: '', component: AdminLayoutComponent, children: [
@@ -21,9 +26,11 @@ import { AdminLayoutComponent } from './shared/components/admin-layout/admin-lay
           {path: 'post/:id/edit', component: EditPageComponent}
         ]
       }
-    ])
+    ]),
+    SharedModule,
   ],
   exports: [RouterModule],
+  providers: [AuthService],
 })
 export class AdminModule{
 
