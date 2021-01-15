@@ -22,7 +22,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  remove(id: string): void {
+  remove(id: any): void {
 
   }
 
