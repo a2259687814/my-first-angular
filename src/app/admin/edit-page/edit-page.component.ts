@@ -34,7 +34,8 @@ export class EditPageComponent implements OnInit, OnDestroy {
       this.post = post;
       this.form = new FormGroup({
         title: new FormControl(post.title, Validators.required),
-        text: new FormControl(post.text, Validators.required)
+        text: new FormControl(post.text, Validators.required),
+        author: new FormControl(post.author, Validators.required),
       });
     });
   }

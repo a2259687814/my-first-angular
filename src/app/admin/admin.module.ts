@@ -8,13 +8,17 @@ import {RouterModule} from '@angular/router';
 import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
-import {AuthService} from './shared/services/auth.service';
 import {AuthGuard} from './shared/services/auth.guard';
 import {SearchPipe} from './shared/search.pipe';
+import {AlertComponent} from './shared/components/alert/alert.component';
+import {AlertService} from './shared/services/alert.service';
 
 @NgModule({
   declarations: [CreatePageComponent, DashboardPageComponent, EditPageComponent, LoginPageComponent, AdminLayoutComponent,
-    SearchPipe],
+    SearchPipe,
+    AlertComponent,
+
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -33,7 +37,7 @@ import {SearchPipe} from './shared/search.pipe';
     SharedModule,
   ],
   exports: [RouterModule],
-  providers: [AuthGuard],
+  providers: [AuthGuard, AlertService],
 })
 export class AdminModule{
 
