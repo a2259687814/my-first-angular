@@ -1,19 +1,25 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-child',
   templateUrl: './child.component.html',
   styleUrls: ['./child.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChildComponent implements OnInit {
-  title = '';
+  @Input() arr: number[] = [];
+  title = 0;
 
-  constructor() {
+  constructor(private cf: ChangeDetectorRef) {
+      //this.cf.detach();
   }
 
   ngOnInit(): void {
-    console.log('child onInit');
+    setInterval(() => {
+      this.title = Math.random();
+      //this.cf.markForCheck();
+      //this.cf.detectChanges();
+    }, 3000);
   }
 
   child(): string {
