@@ -4,7 +4,7 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@an
   selector: 'app-parent',
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ParentComponent implements OnInit {
   title = '';
@@ -19,7 +19,7 @@ export class ParentComponent implements OnInit {
       //this.cf.markForCheck();
       //this.cf.detectChanges();
 
-    }, 113000);
+    }, 332000);
   }
 
   parent(): string {

@@ -4,7 +4,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
   selector: 'app-grandparent',
   templateUrl: './grandparent.component.html',
   styleUrls: ['./grandparent.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GrandparentComponent implements OnInit {
   title = '';
