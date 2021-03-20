@@ -1,0 +1,52 @@
+<!--<p-->
+<!--  [ngStyle]="{-->
+<!--  border: '1px solid #ccc',-->
+<!--  borderRadius:'5px',-->
+<!--  backgroundColor: backgroundTouggle ? 'red' : 'blue'-->
+<!--}">-->
+
+<!--<p-->
+<!--  [ngClass]="{-->
+<!--  red: backgroundTouggle,-->
+<!--  blue: !backgroundTouggle-->
+<!--}">-->
+<p
+  [class.blue]="!backgroundTouggle"
+  [class.red]="backgroundTouggle">
+  post2 works!</p>
+
+<p *ngIf="backgroundTouggle; else blueP" class="red">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, reprehenderit.</p>
+
+<ng-template #blueP>
+  <p class="blue">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, suscipit?</p>
+</ng-template>
+
+<div [ngSwitch]="backgroundTouggle" >
+  <p
+    *ngSwitchCase="true" class="red">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, reprehenderit.</p>
+  <p
+    *ngSwitchCase="false" class="blue">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, suscipit?</p>
+</div>
+
+<button (click)="backgroundTouggle = !backgroundTouggle" > Click me </button>
+
+<ul>
+  <li *ngFor="let n of arr; let i = index">
+    {{i}} .. {{n}}
+  </li>
+</ul>
+
+<ul>
+  <li *ngFor="let n of objs">
+    <p> {{n.title}} <b> {{n.author}} </b> </p>
+    <ul>
+      <li *ngFor="let x of n.coments">
+        <div>
+          <small>{{x.name}}</small>
+          <p>{{x.text}}</p>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
